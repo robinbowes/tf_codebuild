@@ -52,10 +52,9 @@ data "aws_iam_policy_document" "logs" {
   }
 }
 
-resource "aws_iam_policy_attachment" "default" {
-  name       = "${module.label.id}"
+resource "aws_iam_role_policy_attachment" "default" {
+  role       = "${aws_iam_role.default.name}"
   policy_arn = "${aws_iam_policy.default.arn}"
-  roles      = ["${aws_iam_role.default.id}"]
 }
 
 resource "aws_codebuild_project" "default" {
